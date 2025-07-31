@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/emmanuelmarcosdeoliveira/refund-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
