@@ -1,0 +1,34 @@
+{
+  "name": "refund-api",
+  "version": "1.0.0",
+  "description": "API Refund-2.0 Sistema de Reembolso",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmanuelmarcosdeoliveira/refund-api.git"
+  },
+  "keywords": [
+    "Node.js",
+    "API",
+    "Refund",
+    "Reembolso"
+  ],
+  "author": "Emmanuel Marcos de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmanuelmarcosdeoliveira/refund-api/issues"
+  },
+  "homepage": "https://github.com/emmanuelmarcosdeoliveira/refund-api#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
