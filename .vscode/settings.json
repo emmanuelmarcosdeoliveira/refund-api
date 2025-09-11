@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["datasource", "sqlite", "uuid"]
+  "cSpell.words": ["datasource", "sqlite", "uuid"],
+  "liveServer.settings.port": 5501
 }
