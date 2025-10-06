@@ -250,22 +250,6 @@ npx prisma studio    # Interface visual do banco de dados
 - ✅ **Testes de Autenticação**: Validação do sistema JWT e autorização
 - ✅ **Cleanup Automático**: Limpeza automática de dados de teste após execução
 
-### 📊 **Configuração Técnica**
-
-- **Framework**: Jest v29.7.0 com TypeScript
-- **HTTP Testing**: Supertest v7.0.0 para testes de API
-- **Configuração**: `jest.config.ts` com mapeamento de módulos e alias `@/`
-- **Ambiente**: Node.js com ts-jest para suporte completo ao TypeScript
-- **Estratégia**: Testes de integração end-to-end com banco de dados real
-
-### 🎯 **Cobertura Atual**
-
-- ✅ **3 Controllers** testados (Users, Sessions, Refunds)
-- ✅ **100% dos endpoints** principais cobertos
-- ✅ **Autenticação JWT** completamente testada
-- ✅ **Validações Zod** testadas
-- ✅ **Cleanup automático** implementado
-
 ## Contributors or owners
 
 <img height="64px" src="https://res.cloudinary.com/delo0gvyb/image/upload/v1752287431/profile_mjvmdb.png"><br>
