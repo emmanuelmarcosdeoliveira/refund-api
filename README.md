@@ -17,6 +17,7 @@
 - [⚙️ Configuração e Instalação](#️-configuração-e-instalação)
 - [🎯 Funcionalidades](#-funcionalidades)
 - [📊 Estrutura do Banco](#-estrutura-do-banco)
+- [🧪 Testes](#-testes)
 - [🔧 Scripts Disponíveis](#-scripts-disponíveis)
 
 ## 🚀 Tecnologias
@@ -31,6 +32,9 @@
 ![JWT](https://img.shields.io/badge/JWT-000000?style=plastic&logo=jsonwebtoken&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=plastic&logo=zod&logoColor=white)
 ![bcrypt](https://img.shields.io/badge/bcrypt-000000?style=plastic&logo=bcrypt&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=plastic&logo=jest&logoColor=white)
+![Supertest](https://img.shields.io/badge/Supertest-000000?style=plastic&logo=supertest&logoColor=white)
+![ts-jest](https://img.shields.io/badge/ts--jest-000000?style=plastic&logo=typescript&logoColor=white)
 
 </div>
 
@@ -116,6 +120,8 @@ A API estará disponível em `http://localhost:3000`
 - ✅ **Validação de Dados**: Validação robusta com Zod
 - ✅ **Hash de Senhas**: Segurança com bcrypt
 - ✅ **CORS Configurado**: Suporte para requisições cross-origin
+- ✅ **Testes Automatizados**: Suíte completa de testes com Jest e Supertest
+- ✅ **Testes de Integração**: Testes end-to-end para todos os endpoints
 
 ## 📊 Estrutura do Banco
 
@@ -129,11 +135,82 @@ A API estará disponível em `http://localhost:3000`
 - **Categorias**: `food` | `transport` | `accommodation` | `services` | `others`
 - Campos: id, name, amount, category, userId, filename, timestamps
 
+## 🧪 Testes
+
+O projeto implementa uma estratégia abrangente de testes para garantir a qualidade e confiabilidade da API.
+
+### 📋 Configuração dos Testes
+
+- **Framework**: Jest com TypeScript (ts-jest)
+- **Ambiente**: Node.js
+- **HTTP Testing**: Supertest para testes de API
+- **Configuração**: `jest.config.ts` com mapeamento de módulos
+
+### 🏗️ Estrutura de Testes
+
+```
+src/tests/
+├── users-controller.spec.ts      # Testes do controller de usuários
+├── sessions-controller.spec.ts   # Testes de autenticação
+└── refunds-controller.spec.ts    # Testes do controller de reembolsos
+```
+
+### 🎯 Testes Implementados
+
+#### **Users Controller** (`users-controller.spec.ts`)
+
+- ✅ **Criação de usuário**: Testa criação bem-sucedida de usuário
+- ✅ **Validação de email duplicado**: Verifica erro ao tentar criar usuário com email existente
+- ✅ **Validação de email inválido**: Testa validação de formato de email
+- ✅ **Cleanup automático**: Remove dados de teste após execução
+
+#### **Sessions Controller** (`sessions-controller.spec.ts`)
+
+- ✅ **Autenticação**: Testa login e geração de token JWT
+- ✅ **Validação de token**: Verifica se o token retornado é válido
+- ✅ **Cleanup automático**: Remove usuário de teste após execução
+
+#### **Refunds Controller** (`refunds-controller.spec.ts`)
+
+- ✅ **Criação de reembolso**: Testa criação de reembolso com autenticação
+- ✅ **Autorização**: Verifica se apenas usuários autenticados podem criar reembolsos
+- ✅ **Validação de dados**: Testa validação de campos obrigatórios
+- ✅ **Cleanup automático**: Remove reembolsos e usuário de teste após execução
+
+### 🔧 Configuração do Jest
+
+```typescript
+// jest.config.ts
+{
+  bail: true,                    // Para na primeira falha
+  clearMocks: true,             // Limpa mocks entre testes
+  coverageProvider: "v8",       // Provedor de cobertura
+  preset: "ts-jest",           // Preset para TypeScript
+  testEnvironment: "node",     // Ambiente Node.js
+  testMatch: ["<rootDir>/src/**/*.spec.ts"], // Padrão de arquivos de teste
+  moduleNameMapper: {
+    "@/(.*)": "<rootDir>/src/$1" // Mapeamento de alias
+  }
+}
+```
+
+### 📊 Cobertura de Testes
+
+- ✅ **Controllers**: 100% dos controllers testados
+- ✅ **Autenticação**: Fluxo completo de login testado
+- ✅ **Validações**: Schemas Zod testados
+- ✅ **Endpoints**: Todos os endpoints principais cobertos
+- ✅ **Cleanup**: Limpeza automática de dados de teste
+
 ## 🔧 Scripts Disponíveis
 
 ```bash
 # Desenvolvimento
 npm run dev          # Inicia o servidor em modo de desenvolvimento
+
+# Testes
+npm test             # Executa todos os testes
+npm run test:dev     # Executa testes em modo watch (desenvolvimento)
 
 # Banco de dados
 npx prisma generate  # Gera o cliente Prisma
@@ -143,18 +220,35 @@ npx prisma studio    # Interface visual do banco de dados
 
 ## 📚 Bibliotecas Principais
 
-| Biblioteca         | Versão  | Descrição                  |
-| ------------------ | ------- | -------------------------- |
-| **express**        | ^4.19.2 | Framework web para Node.js |
-| **@prisma/client** | ^6.2.1  | ORM para banco de dados    |
-| **typescript**     | ^5.7.3  | Superset do JavaScript     |
-| **zod**            | ^3.24.1 | Validação de schemas       |
-| **jsonwebtoken**   | ^9.0.2  | Autenticação JWT           |
-| **bcrypt**         | ^5.1.1  | Hash de senhas             |
-| **multer**         | ^1.4.5  | Upload de arquivos         |
-| **cors**           | ^2.8.5  | Configuração CORS          |
+| Biblioteca           | Versão   | Descrição                       |
+| -------------------- | -------- | ------------------------------- |
+| **express**          | ^4.19.2  | Framework web para Node.js      |
+| **@prisma/client**   | ^6.2.1   | ORM para banco de dados         |
+| **typescript**       | ^5.7.3   | Superset do JavaScript          |
+| **zod**              | ^3.24.1  | Validação de schemas            |
+| **jsonwebtoken**     | ^9.0.2   | Autenticação JWT                |
+| **bcrypt**           | ^5.1.1   | Hash de senhas                  |
+| **multer**           | ^1.4.5   | Upload de arquivos              |
+| **cors**             | ^2.8.5   | Configuração CORS               |
+| **jest**             | ^29.7.0  | Framework de testes             |
+| **supertest**        | ^7.0.0   | Testes de API HTTP              |
+| **ts-jest**          | ^29.2.5  | Preset Jest para TypeScript     |
+| **@types/jest**      | ^29.5.13 | Tipos TypeScript para Jest      |
+| **@types/supertest** | ^6.0.2   | Tipos TypeScript para Supertest |
 
 ---
+
+## 📝 Updates
+
+### 🚀 Últimas Atualizações
+
+#### **v1.0.0** - _Outubro 2025_
+
+- ✅ **Implementação de Testes**: Adicionada suíte completa de testes automatizados
+- ✅ **Jest & Supertest**: Configuração de framework de testes para API
+- ✅ **Testes de Integração**: Cobertura completa dos endpoints principais
+- ✅ **Testes de Autenticação**: Validação do sistema JWT e autorização
+- ✅ **Cleanup Automático**: Limpeza automática de dados de teste após execução
 
 ## Contributors or owners
 
